@@ -1,0 +1,36 @@
+<script>
+$(document).ready(function() {
+    function getCookie(name) {
+        const value = `; ${document.cookie}`;
+        const parts = value.split(`; ${name}=`);
+        if (parts.length === 2) return parts.pop().split(';').shift();
+    }
+    console.log("zed");
+    $('.t').on('click', function () {
+        document.cookie = "jumpto=" + this.id + ";expires=Fri, 31 Dec 9999 23:59:59 GMT";
+        document.cookie = "pfjump=" + $(this).parent().parent().parent().attr("id") 
+            + ";expires=Fri, 31 Dec 9999 23:59:59 GMT";
+    });
+    $('.pf').each(function() {
+        var e = document.createElement("div");
+        var content = document.createTextNode(this.id);
+        e.appendChild(content);
+        e.style.position = "absolute";
+        e.style.top = "20px";
+        e.style.left = "20px";
+        this.appendChild(e);
+    })
+    var e1 = getCookie("pfjump");
+    window.location.href = "#" + e1;
+    var e = getCookie("jumpto");
+    document.getElementById(e).style.backgroundColor="#FDFF47";
+    setTimeout(() => {
+        
+        window.location.href="#" + e;
+        
+    }, 1500);
+    
+    //document.getElementsByClassName(e)[0].scrollIntoView();
+    
+})
+</script>
