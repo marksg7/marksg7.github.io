@@ -1,3 +1,4 @@
+<script type="text/javascript" src="jquery-3.5.1.js"></script>
 <script>
 $(document).ready(function() {
     function getCookie(name) {
@@ -6,29 +7,12 @@ $(document).ready(function() {
         if (parts.length === 2) return parts.pop().split(';').shift();
     }
     console.log("zed");
-    $('.t').on('click', function () {
+    $('p').on('click', function () {
         document.cookie = "jumpto=" + this.id + ";expires=Fri, 31 Dec 9999 23:59:59 GMT";
-        document.cookie = "pfjump=" + $(this).parent().parent().parent().attr("id") 
-            + ";expires=Fri, 31 Dec 9999 23:59:59 GMT";
     });
-    $('.pf').each(function() {
-        var e = document.createElement("div");
-        var content = document.createTextNode(this.id);
-        e.appendChild(content);
-        e.style.position = "absolute";
-        e.style.top = "20px";
-        e.style.left = "20px";
-        this.appendChild(e);
-    })
-    var e1 = getCookie("pfjump");
+    var e1 = getCookie("jumpto");
     window.location.href = "#" + e1;
-    var e = getCookie("jumpto");
-    document.getElementById(e).style.backgroundColor="#FDFF47";
-    setTimeout(() => {
-        
-        window.location.href="#" + e;
-        
-    }, 1500);
+    document.getElementById(e1).style.backgroundColor="#FDFF47";
     
     //document.getElementsByClassName(e)[0].scrollIntoView();
     
