@@ -2,6 +2,21 @@
 	<script type="text/javascript" src="jquery-3.5.1.js"></script>
 <script>
 $(document).ready(function() {
+    var a = document.getElementsByTagName("p")
+
+    for(var ix = 0; ix < a.length; ix+= 1) {
+        a[ix].id = "p"+ix;
+    }
+
+    for(var ix = 0; ix < a.length; ix+= 15) {
+        p = document.createElement('p');
+        idd = Math.floor(ix / 15)
+        p.id = "pf" + idd;
+        t = document.createTextNode("pf"+idd);
+        p.appendChild(t);
+        a[ix].parentNode.insertBefore(p, a[ix]);
+    }
+
     function getCookie(name) {
         const value = `; ${document.cookie}`;
         const parts = value.split(`; ${name}=`);
