@@ -12,8 +12,6 @@ $(document).ready(function() {
 
     for(var ix = 0; ix < a.length; ix+= 15) {
         p = document.createElement('p');
-        p.style.position = "absolute";
-        p.style.left = "50px";
         idd = Math.floor(ix / 15)
         p.id = "pf" + idd;
         t = document.createTextNode("pf"+idd);
