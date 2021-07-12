@@ -1,4 +1,4 @@
-<script type="text/javascript" src="jquery-3.5.1.js"></script>
+<script src="jquery-3.5.1.js"></script>
 <script>
 $(document).ready(function() {
     var a = document.getElementsByTagName("p")

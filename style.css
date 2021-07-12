@@ -1,21 +1,13 @@
-.align-end {
+.btm {
     display: block;
-    height: auto;
-    margin-bottom: 0;
-    margin-left: 0;
-    margin-right: 0;
-    margin-top: 0;
-    padding-bottom: 0;
-    padding-left: 0;
-    padding-right: 0;
-    padding-top: 0;
-    text-align: right;
-    text-indent: 0;
-    width: auto
+    text-align: right
     }
 .calibre {
-    display: block;
-    height: auto;
+    -epub-line-break: strict;
+    -epub-word-break: normal;
+    -epub-writing-mode: vertical-rl;
+    -webkit-writing-mode: vertical-rl;
+    line-break: strict;
     margin-bottom: 0;
     margin-left: 0;
     margin-right: 0;
@@ -24,13 +16,208 @@
     padding-left: 0;
     padding-right: 0;
     padding-top: 0;
-    text-indent: inherit;
-    width: auto
+    width: 100%;
+    word-break: normal;
+    writing-mode: vertical-rl
     }
 .calibre1 {
-    display: block
+    color: #000;
+    display: block;
+    font-family: "@ＭＳ 明朝", "@MS Mincho", "ヒラギノ明朝 ProN W3", "HiraMinProN-W3", serif, sans-serif;
+    font-size: 1em;
+    line-height: 1.8;
+    margin-bottom: 0;
+    margin-left: 5pt;
+    margin-right: 5pt;
+    margin-top: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    vertical-align: middle;
+    width: 100%
     }
 .calibre2 {
+    display: table-row;
+    vertical-align: middle
+    }
+.calibre3 {
+    display: table-cell;
+    height: 100%;
+    padding-bottom: 1px;
+    padding-left: 1px;
+    padding-right: 1px;
+    padding-top: 1px;
+    text-align: inherit;
+    vertical-align: middle;
+    width: 100%
+    }
+.calibre4 {
+    display: block
+    }
+.calibre5 {
+    -epub-writing-mode: horizontal-tb;
+    -webkit-writing-mode: horizontal-tb;
+    margin-bottom: 0;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    writing-mode: horizontal-tb
+    }
+.calibre6 {
+    height: 100%;
+    min-height: 100%;
+    width: auto
+    }
+.calibre7 {
+    color: #000;
+    display: block;
+    font-family: "@ＭＳ 明朝", "@MS Mincho", "ヒラギノ明朝 ProN W3", "HiraMinProN-W3", serif, sans-serif;
+    font-size: 1em;
+    line-height: 1.8;
+    margin-bottom: 0;
+    margin-left: 5pt;
+    margin-right: 5pt;
+    margin-top: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    vertical-align: baseline;
+    width: 100%
+    }
+.calibre8 {
+    display: block;
+    margin-bottom: 0;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    text-align: justify
+    }
+.calibre9 {
+    -epub-line-break: strict;
+    -epub-word-break: normal;
+    -epub-writing-mode: vertical-rl;
+    -webkit-writing-mode: vertical-rl;
+    line-break: strict;
+    margin-bottom: 0;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    word-break: normal;
+    writing-mode: vertical-rl
+    }
+.calibre10 {
+    color: #000;
+    display: block;
+    font-family: "@ＭＳ 明朝", "@MS Mincho", "ヒラギノ明朝 ProN W3", "HiraMinProN-W3", serif, sans-serif;
+    font-size: 1em;
+    line-height: 1.8;
+    margin-bottom: 0;
+    margin-left: 5pt;
+    margin-right: 5pt;
+    margin-top: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    vertical-align: baseline
+    }
+.calibre11 {
+    -epub-text-combine: horizontal;
+    -webkit-text-combine: horizontal;
+    text-combine: horizontal
+    }
+.calibre12 {
+    -epub-writing-mode: vertical-rl;
+    -webkit-writing-mode: vertical-rl;
+    writing-mode: vertical-rl
+    }
+.calibre13 {
+    display: block;
+    font-size: 1em;
+    margin-bottom: 0;
+    margin-left: 5pt;
+    margin-right: 5pt;
+    margin-top: 0;
+    padding-left: 0;
+    padding-right: 0
+    }
+.calibre14 {
+    display: none
+    }
+.calibre15 {
+    display: block;
+    font-size: 1.41667em;
+    font-weight: bold;
+    line-height: 1.2;
+    margin-bottom: 0.83em;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0.83em
+    }
+.calibre16 {
+    display: block;
+    list-style-type: decimal;
+    margin-bottom: 1em;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 1em
+    }
+.calibre17 {
+    display: list-item;
+    list-style-image: none;
+    list-style-position: outside;
+    list-style-type: none;
+    padding-bottom: 0;
+    padding-left: 0;
+    padding-right: 0.25em;
+    padding-top: 0
+    }
+.calibre18 {
+    border-right-style: solid;
+    border-right-width: 1px;
+    padding-right: 1px;
+    text-decoration: none
+    }
+.calibre19 {
+    display: block;
+    font-size: 1.41667em;
+    font-weight: bold;
+    line-height: 1.2;
+    margin-bottom: 0.67em;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0.67em;
+    padding-top: 1em
+    }
+.chapter {
+    display: list-item;
+    line-height: 1.75em;
+    list-style-image: none;
+    list-style-position: outside;
+    list-style-type: disc;
+    padding-bottom: 0;
+    padding-left: 0;
+    padding-right: 0.25em;
+    padding-top: 0
+    }
+.creator {
+    display: block;
+    font-size: 1.41667em;
+    line-height: 1.2;
+    margin-bottom: 2em;
+    text-align: right
+    }
+.fit_h {
     display: block;
     font-size: 1em;
     margin-bottom: 0;
@@ -43,175 +230,28 @@
     padding-top: 0;
     text-align: center
     }
-.font-1em {
-    background: transparent;
-    display: block;
-    font-family: serif-ja-v, serif-ja, serif;
-    font-size: 1.41667em;
-    font-weight: inherit;
-    line-height: 1.2;
+.middle {
+    border-collapse: separate;
+    border-spacing: 2px;
+    display: table;
+    height: 100%;
     margin-bottom: 0;
-    margin-left: 0;
-    margin-right: 0;
     margin-top: 0;
-    padding-bottom: 0;
-    padding-left: 0;
-    padding-right: 0;
-    padding-top: 0
+    text-indent: 0;
+    width: 100%
     }
-.font-1em1 {
-    font-size: 1.41667em;
+.title {
+    display: block;
+    font-size: 1.83333em;
     line-height: 1.2
     }
-.font-1em2 {
-    font-size: 1.125em;
-    line-height: 1.2
-    }
-.h-indent-4em {
-    display: block;
-    height: auto;
-    margin-bottom: 0;
-    margin-left: 0;
-    margin-right: 0;
-    margin-top: 0;
-    padding-bottom: 0;
-    padding-left: 0;
-    padding-right: 0;
-    padding-top: 4em;
-    text-indent: -4em;
-    width: auto
-    }
-.main {
-    display: block;
-    height: auto;
-    margin-bottom: 0;
-    margin-left: 0;
-    margin-right: 0;
-    margin-top: 0;
-    padding-bottom: 0;
-    padding-left: 0;
-    padding-right: 0;
-    padding-top: 0;
-    text-indent: 0;
-    width: auto
-    }
-.p-titlepage {
-    -epub-hyphens: auto;
-    -epub-line-break: normal;
-    -epub-text-underline-position: under left;
-    -epub-word-break: normal;
-    -webkit-hyphens: auto;
-    -webkit-line-break: normal;
-    -webkit-text-underline-position: under left;
-    -webkit-word-break: normal;
+.pcalibre:link {
     background: transparent;
-    display: block;
-    font-size: 1em;
-    letter-spacing: normal;
-    line-height: 1.75;
-    margin-bottom: 0;
-    margin-left: 5pt;
-    margin-right: 5pt;
-    margin-top: 0;
-    padding-bottom: 0;
-    padding-left: 0;
-    padding-right: 0;
-    padding-top: 0;
-    text-align: justify;
-    text-indent: 0;
-    vertical-align: baseline;
-    white-space: normal;
-    word-spacing: normal;
-    word-wrap: break-word
+    color: #00C
     }
-.pcalibre {
+.pcalibre1:visited {
     background: transparent;
-    color: inherit;
-    font-style: inherit;
-    font-weight: inherit;
-    text-decoration: overline
-    }
-.sideways {
-    -epub-text-orientation: sideways;
-    -webkit-text-orientation: sideways
-    }
-.start-1em {
-    display: block;
-    height: auto;
-    margin-bottom: 0;
-    margin-left: 0;
-    margin-right: 0;
-    margin-top: 1em;
-    padding-bottom: 0;
-    padding-left: 0;
-    padding-right: 0;
-    padding-top: 0;
-    text-indent: 0;
-    width: auto
-    }
-.start-3em {
-    background: transparent;
-    display: block;
-    font-family: serif-ja-v, serif-ja, serif;
-    font-size: 1em;
-    font-weight: inherit;
-    margin-bottom: 0;
-    margin-left: 0;
-    margin-right: 0;
-    margin-top: 3em;
-    padding-bottom: 0;
-    padding-left: 0;
-    padding-right: 0;
-    padding-top: 0
-    }
-.start-5em {
-    display: block;
-    height: auto;
-    margin-bottom: 0;
-    margin-left: 0;
-    margin-right: 0;
-    margin-top: 5em;
-    padding-bottom: 0;
-    padding-left: 0;
-    padding-right: 0;
-    padding-top: 0;
-    text-indent: 0;
-    width: auto
-    }
-.tcy {
-    -webkit-text-combine: horizontal;
-    -webkit-text-combine-upright: all;
-    text-combine-upright: all
-    }
-.vrtl {
-    -webkit-writing-mode: vertical-rl;
-    font-family: serif-ja, serif
-    }
-.pcalibre1:link {
-    color: #00f
-    }
-.pcalibre2:visited {
-    color: #00f
-    }
-.pcalibre3:focus {
-    color: #00f
-    }
-.pcalibre4:hover {
-    color: #00f
-    }
-.pcalibre5:active {
-    color: #00f
-    }
-
-@page {
-    margin-bottom: 5pt;
-    margin-left: 0;
-    margin-right: 0;
-    margin-top: 5pt;
-    padding-bottom: 0;
-    padding-left: 0;
-    padding-right: 0;
-    padding-top: 0
+    color: #609
     }
 
 @page {
