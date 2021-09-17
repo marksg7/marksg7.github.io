@@ -114,14 +114,10 @@ $(document).ready(function() {
 </head>
 <body>'''
 with open(fname, 'r', encoding='shift_jis') as f:
-    i = 0
     for lin in f.readlines():
-        html += f'<p id="p{i}">'
+        html += f'<p>'
         html += lin.strip()
         html += '</p>'
-        if i % 15 == 0:
-            html += f'<p id="pf{i//15}">pf{i//15}</p>'
-        i += 1
 
 html += '</body>'
 
