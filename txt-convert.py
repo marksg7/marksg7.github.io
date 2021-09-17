@@ -1,0 +1,130 @@
+import sys
+
+assert len(sys.argv) >= 2
+
+fname = sys.argv[1]
+html = '''
+<!DOCTYPE html>
+<html>
+<head>
+<script src="jquery-3.5.1.js"></script>
+<script>
+$(document).ready(function() {
+    var a = document.getElementsByTagName("p")
+
+    for(var ix = 0; ix < a.length; ix+= 1) {
+        a[ix].id = "p"+ix;
+    }
+
+    for(var ix = 0; ix < a.length; ix+= 15) {
+        p = document.createElement('p');
+        idd = Math.floor(ix / 15)
+        p.id = "pf" + idd;
+        t = document.createTextNode("pf"+idd);
+        p.appendChild(t);
+        a[ix].parentNode.insertBefore(p, a[ix]);
+    }
+
+    function getCookie(name) {
+        const value = `; ${document.cookie}`;
+        const parts = value.split(`; ${name}=`);
+        if (parts.length === 2) return parts.pop().split(';').shift();
+    }
+    console.log("zed");
+    $('p').on('click', function () {
+        document.cookie = "jumpto=" + this.id + ";expires=Fri, 31 Dec 9999 23:59:59 GMT";
+    });
+    var e1 = getCookie("jumpto");
+    window.location.href = "#" + e1;
+	try{
+    document.getElementById(e1).style.backgroundColor="#FDFF47";
+	}catch(e){}
+
+	let last = document.createElement("div");
+	last.appendChild(document.createTextNode(getCookie("lasttime")))
+	last.style.position = "fixed";
+	last.style.left = "0px";
+	last.style.top = "75px";
+	last.style.width = "50px";
+	last.style.textAlign = "center";
+	last.style.lineHeight = "25px";
+	$(last).on('click', function() {
+		if (last.style.display === "none") {
+			last.style.display = "block";
+		} else {
+			last.style.display = "none";
+  		}
+	});
+	document.body.appendChild(last);
+
+	let timer = document.createElement("div")
+	timer.paused = false;
+	timer.val = 0;
+	timer.storedTime = 0;
+	timer.startTime = Date.now();
+	timer.style.position = "fixed";
+	timer.style.width = "50px";
+	timer.style.height = "25px";
+	timer.style.lineHeight = "25px";
+	timer.style.top = "0px";
+	timer.style.left = "0px";
+	timer.style.textAlign = "center";
+	timer.style.backgroundColor = "#55EE55";
+	document.cookie = "lasttime=" + timer.val + ";expires=Fri, 31 Dec 9999 23:59:59 GMT";
+	let timertext = document.createTextNode("0");
+	timer.appendChild(timertext);
+	document.body.appendChild(timer)
+	updateTime = function() {
+		let elapsed = timer.storedTime;
+		if(!timer.paused) {
+			elapsed += Date.now() - timer.startTime;
+		}
+		let newval = Math.round(elapsed/60000);
+		if (newval !== timer.val) {
+			timer.val = newval;
+			timertext.nodeValue = timer.val;
+			document.cookie = "lasttime=" + timer.val + ";expires=Fri, 31 Dec 9999 23:59:59 GMT";
+		}
+	};
+	setInterval(updateTime, 1000);
+	$(timer).on('click', function() {
+		if(timer.paused) {
+			timer.startTime = Date.now();
+			timer.paused = false;
+			timer.style.backgroundColor = "#55EE55";
+		} else {
+			timer.storedTime += Date.now() - timer.startTime;
+			timer.paused = true;
+			timer.style.backgroundColor = "#EE5555";
+		}
+		updateTime();
+	})
+
+
+	let timerView = document.createElement("div");
+	timer.appendChild(timerView);
+	timerView.style.width = "100px";
+	document.body.style.marginLeft = "50px";
+	
+    
+    //document.getElementsByClassName(e)[0].scrollIntoView();
+    
+})
+</script>
+</head>
+<body>'''
+with open(fname, 'r', encoding='shift_jis') as f:
+    i = 0
+    for lin in f.readlines():
+        html += f'<p id="p{i}">'
+        html += lin.strip()
+        html += '</p>'
+        if i % 15 == 0:
+            html += f'<p id="pf{i//15}">pf{i//15}</p>'
+        i += 1
+
+html += '</body>'
+
+with open('out.html', 'w', encoding='utf-8') as f:
+    f.write(html)
+#print(html)
