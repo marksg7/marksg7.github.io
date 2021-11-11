@@ -1,4 +1,9 @@
 <script src="jquery-3.5.1.js"></script>
+<style>
+    ruby > rt {
+        user-select: none;
+    }
+</style>
 <script>
 $(document).ready(function() {
     var a = document.getElementsByTagName("p")
