@@ -113,7 +113,9 @@ $(document).ready(function() {
 </script>
 </head>
 <body>'''
-with open(fname, 'r', encoding='shift_jis') as f:
+import chardet
+ec = chardet.detect(open(fname, 'rb').read())['encoding']
+with open(fname, 'r', encoding=ec) as f:
     for lin in f.readlines():
         html += f'<p>'
         html += lin.strip()
