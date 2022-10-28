@@ -129,7 +129,8 @@
             for(var i = 0; i < window.nBooks; i++) {
                 $('#bookselect').append($(document.createElement('option')).prop({
                     value: i,
-                    text: 'B ' + i
+                    text: 'B ' + i,
+                    selected: i === window.currentBook;
                 }));
             }
             $('#bookselect').change(function() {
