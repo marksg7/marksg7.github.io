@@ -138,7 +138,7 @@
                 setBook(sel.value);
             });
 
-            setBook(0);       
+            setBook(window.currentBook);       
         } 
         function loadAllBooks() {
             $('#testbook').load('/b' + window.nBooks + '.html', function(responseTxt, statusTxt, xhr){
