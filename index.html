@@ -3,7 +3,29 @@
 <html><head>
     <script src="jquery-3.5.1.js"></script>
     <script>
+        function getCookie(name) {
+            const value = `; ${document.cookie}`;
+            const parts = value.split(`; ${name}=`);
+            if (parts.length === 2) return parts.pop().split(';').shift();
+        }
         function makeTimer() {
+            let last = document.createElement("div");
+            last.appendChild(document.createTextNode(getCookie("lasttime")))
+            last.style.position = "fixed";
+            last.style.left = "0px";
+            last.style.top = "75px";
+            last.style.width = "50px";
+            last.style.textAlign = "center";
+            last.style.lineHeight = "25px";
+            $(last).on('click', function() {
+                if (last.style.display === "none") {
+                    last.style.display = "block";
+                } else {
+                    last.style.display = "none";
+                }
+            });
+            document.body.appendChild(last);
+    
             let timer = document.createElement("div")
             timer.paused = false;
             timer.val = 0;
@@ -53,16 +75,53 @@
             timerView.style.width = "100px";
             document.body.style.marginLeft = "50px";
         }
+        function setBook(i) {
+            $('#realbook').load('/b' + i + '.html', function(rsp, stat, xhr) {
+                var a = document.getElementsByTagName("p");
+
+                // Compute total char sum
+                var chSum = 0;
+                for(var ix = 0; ix < a.length; ix+= 1) {
+                    a[ix].id = "p"+ix;
+                    chSum += a[ix].innerText.length;
+                }
+
+                // Add PF elements every 15 paras
+                for(var ix = 0; ix < a.length; ix+= 15) {
+                    p = document.createElement('p');
+                    idd = Math.floor(ix / 15)
+                    p.id = "pf" + idd;
+                    t = document.createTextNode("pf"+idd);
+                    p.appendChild(t);
+                    a[ix].parentNode.insertBefore(p, a[ix]);
+                }
+
+                // Add charsum elem
+                chsumP = document.createElement('p');
+                t = document.createTextNode("char total: " + chSum);
+                chsumP.appendChild(t);
+                a[a.length - 1].parentNode.appendChild(chsumP);
+
+                // Upon clicking an element, save as last clicked for this book
+                $('p').on('click', function () {
+                    document.cookie = "jumpto" + i + "=" + this.id + ";expires=Fri, 31 Dec 9999 23:59:59 GMT";
+                });
+
+                // Load last clicked and jump to it
+                var e1 = getCookie("jumpto" + i);
+                window.location.href = "#" + e1;
+                try {
+                    document.getElementById(e1).style.backgroundColor="#FDFF47";
+                } catch(e) {}
+            }); 
+        }
         function onBooksLoaded() {
             if(window.nBooks == 0) {
                 alert("Error: No books were loaded.");
             }
 
             window.currentBook = 0;
-            function setBook(i) {
-                $('#realbook').load('/b' + i + '.html'); 
-                //$.getScript('subpage_script.js');
-            }
+            
 
             for(var i = 0; i < window.nBooks; i++) {
                 $('#bookselect').append($(document.createElement('option')).prop({
