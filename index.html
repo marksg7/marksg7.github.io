@@ -3,25 +3,99 @@
 <html><head>
     <script src="jquery-3.5.1.js"></script>
     <script>
+        // Book switcher
         $(document).ready(function() {
         window.nBooks = 0;
+        window.currentBook = 0;
         function loadAllBooks() {
             $('#testbook').load('/b' + window.nBooks + '.html', function(responseTxt, statusTxt, xhr){
                 if(statusTxt == "success") {
-                    alert("Success!");
                     window.nBooks += 1;
                     loadAllBooks();
-                } else {
-                    alert("Error: " + xhr.status + ": " + xhr.statusText);
                 }
             });
         }
         loadAllBooks();
-        alert("Books loaded: " + window.nBooks);
+        if(window.nBooks == 0) {
+            alert("Error: No books were loaded.");
+        }
+
+        function setBook(i) {
+            $('#realbook').load('/b' + i + '.html'); 
+            //$.getScript('subpage_script.js');
+        }
+
+        for(var i = 0; i < window.nBooks; i++) {
+            $('#bookselect').append($(document.createElement('option')).prop({
+                value: i,
+                text: 'Book ' + i
+            }));
+        }
+        $('#bookselect').change(function() {
+            var sel = $("option:selected", this);
+            setBook(sel.value);
+        });
+
+        setBook(0);        
     });
     </script>
+    <script>
+        // Timer
+        let timer = document.createElement("div")
+        timer.paused = false;
+        timer.val = 0;
+        timer.storedTime = 0;
+        timer.startTime = Date.now();
+        timer.style.position = "fixed";
+        timer.style.width = "50px";
+        timer.style.height = "25px";
+        timer.style.lineHeight = "25px";
+        timer.style.top = "0px";
+        timer.style.left = "0px";
+        timer.style.textAlign = "center";
+        timer.style.backgroundColor = "#55EE55";
+        document.cookie = "lasttime=" + timer.val + ";expires=Fri, 31 Dec 9999 23:59:59 GMT";
+        let timertext = document.createTextNode("0");
+        timer.appendChild(timertext);
+        document.body.appendChild(timer);
+        updateTime = function() {
+            let elapsed = timer.storedTime;
+            if(!timer.paused) {
+                elapsed += Date.now() - timer.startTime;
+            }
+            let newval = Math.round(elapsed/60000);
+            if (newval !== timer.val) {
+                timer.val = newval;
+                timertext.nodeValue = timer.val;
+                document.cookie = "lasttime=" + timer.val + ";expires=Fri, 31 Dec 9999 23:59:59 GMT";
+            }
+        };
+        setInterval(updateTime, 1000);
+        $(timer).on('click', function() {
+            if(timer.paused) {
+                timer.startTime = Date.now();
+                timer.paused = false;
+                timer.style.backgroundColor = "#55EE55";
+            } else {
+                timer.storedTime += Date.now() - timer.startTime;
+                timer.paused = true;
+                timer.style.backgroundColor = "#EE5555";
+            }
+            updateTime();
+        })
+
+
+        let timerView = document.createElement("div");
+        timer.appendChild(timerView);
+        timerView.style.width = "100px";
+        document.body.style.marginLeft = "50px";
+    </script>
+    <script src="mainpage_script.js"></script>
 </head>
 <body>
+    <select id="bookselect"></select>
+    <div id="realbook"></div>
     <div id="testbook" style="visibility: hidden;"></div>
+    
 </body>
 </html>
