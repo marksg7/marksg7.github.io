@@ -125,8 +125,13 @@
                 alert("Error: No books were loaded.");
             }
 
-            window.currentBook = 0;
-            
+            window.currentBook = getCookie("lastbook");
+            if(window.currentBook === undefined) {
+                window.currentBook = 0;
+            }
+            if(window.currentBook >= window.nBooks) {
+                window.currentBook = 0;
+            }
 
             for(var i = 0; i < window.nBooks; i++) {
                 $('#bookselect').append($(document.createElement('option')).prop({
@@ -136,6 +141,7 @@
             }
             $('#bookselect').change(function() {
                 var sel = $("option:selected", this)[0];
+                document.cookie = "lastbook=" + sel.value + ";expires=Fri, 31 Dec 9999 23:59:59 GMT";
                 setBook(sel.value);
             });
 
