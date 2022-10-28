@@ -18,17 +18,10 @@
             last.appendChild(document.createTextNode(getCookie("lasttime")))
             last.style.position = "fixed";
             last.style.left = "0px";
-            last.style.top = "75px";
+            last.style.top = "50px";
             last.style.width = "50px";
             last.style.textAlign = "center";
             last.style.lineHeight = "25px";
-            $(last).on('click', function() {
-                if (last.style.display === "none") {
-                    last.style.display = "block";
-                } else {
-                    last.style.display = "none";
-                }
-            });
             document.body.appendChild(last);
     
             let timer = document.createElement("div")
@@ -136,7 +129,7 @@
             for(var i = 0; i < window.nBooks; i++) {
                 $('#bookselect').append($(document.createElement('option')).prop({
                     value: i,
-                    text: 'Book ' + i
+                    text: 'B ' + i
                 }));
             }
             $('#bookselect').change(function() {
@@ -167,7 +160,7 @@
     <script src="mainpage_script.js"></script>
 </head>
 <body>
-    <select id="bookselect" style="position: fixed; top:300px; left: 10px"></select>
+    <select id="bookselect" style="position: fixed; top:100px; left: 4px; width: 42px;"></select>
     <div id="realbook"></div>
     <div id="testbook" style="visibility: hidden;"></div>
     
