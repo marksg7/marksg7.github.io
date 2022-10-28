@@ -130,7 +130,7 @@
                 $('#bookselect').append($(document.createElement('option')).prop({
                     value: i,
                     text: 'B ' + i,
-                    selected: i === window.currentBook;
+                    selected: i === window.currentBook
                 }));
             }
             $('#bookselect').change(function() {
@@ -158,7 +158,6 @@
         makeTimer();
     });
     </script>
-    <script src="mainpage_script.js"></script>
 </head>
 <body>
     <select id="bookselect" style="position: fixed; top:100px; left: 4px; width: 42px;"></select>
