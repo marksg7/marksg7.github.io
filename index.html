@@ -71,7 +71,7 @@
                 }));
             }
             $('#bookselect').change(function() {
-                var sel = $("option:selected", this);
+                var sel = $("option:selected", this)[0];
                 setBook(sel.value);
             });
 
