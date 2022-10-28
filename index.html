@@ -3,11 +3,57 @@
 <html><head>
     <script src="jquery-3.5.1.js"></script>
     <script>
-        // Book switcher
-        $(document).ready(function() {
-        window.nBooks = 0;
+        function makeTimer() {
+            let timer = document.createElement("div")
+            timer.paused = false;
+            timer.val = 0;
+            timer.storedTime = 0;
+            timer.startTime = Date.now();
+            timer.style.position = "fixed";
+            timer.style.width = "50px";
+            timer.style.height = "25px";
+            timer.style.lineHeight = "25px";
+            timer.style.top = "0px";
+            timer.style.left = "0px";
+            timer.style.textAlign = "center";
+            timer.style.backgroundColor = "#55EE55";
+            document.cookie = "lasttime=" + timer.val + ";expires=Fri, 31 Dec 9999 23:59:59 GMT";
+            let timertext = document.createTextNode("0");
+            timer.appendChild(timertext);
+            document.body.appendChild(timer);
+            updateTime = function() {
+                let elapsed = timer.storedTime;
+                if(!timer.paused) {
+                    elapsed += Date.now() - timer.startTime;
+                }
+                let newval = Math.round(elapsed/60000);
+                if (newval !== timer.val) {
+                    timer.val = newval;
+                    timertext.nodeValue = timer.val;
+                    document.cookie = "lasttime=" + timer.val + ";expires=Fri, 31 Dec 9999 23:59:59 GMT";
+                }
+            };
+            setInterval(updateTime, 1000);
+            $(timer).on('click', function() {
+                if(timer.paused) {
+                    timer.startTime = Date.now();
+                    timer.paused = false;
+                    timer.style.backgroundColor = "#55EE55";
+                } else {
+                    timer.storedTime += Date.now() - timer.startTime;
+                    timer.paused = true;
+                    timer.style.backgroundColor = "#EE5555";
+                }
+                updateTime();
+            })
 
-        function onLoaded() {
+
+            let timerView = document.createElement("div");
+            timer.appendChild(timerView);
+            timerView.style.width = "100px";
+            document.body.style.marginLeft = "50px";
+        }
+        function onBooksLoaded() {
             if(window.nBooks == 0) {
                 alert("Error: No books were loaded.");
             }
@@ -37,68 +83,21 @@
                     window.nBooks += 1;
                     loadAllBooks();
                 } else {
-                    onLoaded();
+                    onBooksLoaded();
                 }
             });
         }
+        
+        $(document).ready(function() {
+        window.nBooks = 0;
         loadAllBooks();
+        makeTimer();
     });
-    </script>
-    <script>
-        // Timer
-        let timer = document.createElement("div")
-        timer.paused = false;
-        timer.val = 0;
-        timer.storedTime = 0;
-        timer.startTime = Date.now();
-        timer.style.position = "fixed";
-        timer.style.width = "50px";
-        timer.style.height = "25px";
-        timer.style.lineHeight = "25px";
-        timer.style.top = "0px";
-        timer.style.left = "0px";
-        timer.style.textAlign = "center";
-        timer.style.backgroundColor = "#55EE55";
-        document.cookie = "lasttime=" + timer.val + ";expires=Fri, 31 Dec 9999 23:59:59 GMT";
-        let timertext = document.createTextNode("0");
-        timer.appendChild(timertext);
-        document.body.appendChild(timer);
-        updateTime = function() {
-            let elapsed = timer.storedTime;
-            if(!timer.paused) {
-                elapsed += Date.now() - timer.startTime;
-            }
-            let newval = Math.round(elapsed/60000);
-            if (newval !== timer.val) {
-                timer.val = newval;
-                timertext.nodeValue = timer.val;
-                document.cookie = "lasttime=" + timer.val + ";expires=Fri, 31 Dec 9999 23:59:59 GMT";
-            }
-        };
-        setInterval(updateTime, 1000);
-        $(timer).on('click', function() {
-            if(timer.paused) {
-                timer.startTime = Date.now();
-                timer.paused = false;
-                timer.style.backgroundColor = "#55EE55";
-            } else {
-                timer.storedTime += Date.now() - timer.startTime;
-                timer.paused = true;
-                timer.style.backgroundColor = "#EE5555";
-            }
-            updateTime();
-        })
-
-
-        let timerView = document.createElement("div");
-        timer.appendChild(timerView);
-        timerView.style.width = "100px";
-        document.body.style.marginLeft = "50px";
     </script>
     <script src="mainpage_script.js"></script>
 </head>
 <body>
-    <select id="bookselect"></select>
+    <select id="bookselect" style="position: fixed; top:300px; left: 10px"></select>
     <div id="realbook"></div>
     <div id="testbook" style="visibility: hidden;"></div>
     
