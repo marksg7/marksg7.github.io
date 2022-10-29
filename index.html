@@ -6,6 +6,80 @@
         ruby > rt {
             user-select: none;
         }
+        /* Old style
+        #lasttime {
+            position: fixed;
+            left: 0px;
+            top: 50px;
+            width : 50px;
+            text-align: center;
+            line-height: 25px;
+        }
+        #timer {
+            position: fixed;
+            width: 50px;
+            height: 25px;
+            line-height: 25px;
+            top: 0px;
+            left: 0px;
+            text-align: center;
+            background-color: #55EE55;
+        }
+        #bookselect {
+            position: fixed; 
+            top: 100px; 
+            left: 4px; 
+            width: 42px;
+        }
+        body {
+            margin-left: 50px;
+        }*/
+        #timer {
+            float: left;
+            width: 50px;
+            height: 25px;
+            line-height: 25px;
+            text-align: center;
+            background-color: #EE5555;
+        }       
+        #lasttime {
+            float: left;
+            position: relative;
+            left: 25px;
+            width: 50px;
+            height: 25px;
+            text-align: center;
+            line-height: 25px;
+        } 
+        #bookselect {
+            position: relative;
+            top: 5px;
+            left: 50px;
+            width: 50px;
+            height: 15px;
+        }
+        #popup-spacer {
+            width: 100%;
+            height: 25px;
+            background-color: #00000000;
+        }
+        #popup {
+            width: 100%;
+            height: 25px;
+            float: left;
+            background-color: #aaaaaa;
+        }
+        #popup-full {
+            position: absolute;
+            width: 100%;
+            bottom: 0px;
+            left: 0px;
+            transition: bottom 0.7s cubic-bezier(1, 0, 0, 1);
+        }
+        #popup-full:hover {
+            bottom: 0px;
+        }
+
     </style>
     <script>
         function getCookie(name) {
@@ -14,33 +88,24 @@
             if (parts.length === 2) return parts.pop().split(';').shift();
         }
         function makeTimer() {
-            let last = document.createElement("div");
+            let last = document.getElementById("lasttime");
             last.appendChild(document.createTextNode(getCookie("lasttime")))
-            last.style.position = "fixed";
-            last.style.left = "0px";
-            last.style.top = "50px";
-            last.style.width = "50px";
-            last.style.textAlign = "center";
-            last.style.lineHeight = "25px";
-            document.body.appendChild(last);
+            // last.style.position = "fixed";
+            // last.style.left = "0px";
+            // last.style.top = "50px";
+            // last.style.width = "50px";
+            // last.style.textAlign = "center";
+            // last.style.lineHeight = "25px";
+            // document.body.appendChild(last);
     
-            let timer = document.createElement("div")
-            timer.paused = false;
+            let timer = document.getElementById("timer");
+            timer.paused = true;
             timer.val = 0;
             timer.storedTime = 0;
             timer.startTime = Date.now();
-            timer.style.position = "fixed";
-            timer.style.width = "50px";
-            timer.style.height = "25px";
-            timer.style.lineHeight = "25px";
-            timer.style.top = "0px";
-            timer.style.left = "0px";
-            timer.style.textAlign = "center";
-            timer.style.backgroundColor = "#55EE55";
-            document.cookie = "lasttime=" + timer.val + ";expires=Fri, 31 Dec 9999 23:59:59 GMT";
             let timertext = document.createTextNode("0");
             timer.appendChild(timertext);
-            document.body.appendChild(timer);
+
             updateTime = function() {
                 let elapsed = timer.storedTime;
                 if(!timer.paused) {
@@ -54,24 +119,22 @@
                 }
             };
             setInterval(updateTime, 1000);
+            const popupBar = document.getElementById("popup-full");
+            const wherePopup = document.getElementById("where-popup");
             $(timer).on('click', function() {
                 if(timer.paused) {
+                    wherePopup.innerHTML = "#popup-full {bottom: -25px;}";
                     timer.startTime = Date.now();
                     timer.paused = false;
                     timer.style.backgroundColor = "#55EE55";
                 } else {
+                    wherePopup.innerHTML = "#popup-full {bottom: 0px;}";
                     timer.storedTime += Date.now() - timer.startTime;
                     timer.paused = true;
                     timer.style.backgroundColor = "#EE5555";
                 }
                 updateTime();
-            })
-
-
-            let timerView = document.createElement("div");
-            timer.appendChild(timerView);
-            timerView.style.width = "100px";
-            document.body.style.marginLeft = "50px";
+            });
         }
         function setBook(i) {
             $('#realbook').load('/b' + i + '.html', function(rsp, stat, xhr) {
@@ -157,9 +220,21 @@
     </script>
 </head>
 <body>
-    <select id="bookselect" style="position: fixed; top:100px; left: 4px; width: 42px;"></select>
+    
     <div id="realbook"></div>
     <div id="testbook" style="visibility: hidden;"></div>
+    
+    <div id="popup-full">
+        <div id="popup-spacer"></div>
+        <div id="popup">
+            <div id="timer"></div><div id="lasttime"></div><select id="bookselect"></select>
+        </div>
+    </div>
+    <style id="where-popup">
+        #popup-full {
+           bottom: 0px;
+       }
+   </style>
     
 </body>
 </html>
