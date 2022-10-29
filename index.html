@@ -52,11 +52,12 @@
             line-height: 25px;
         } 
         #bookselect {
+            float: left;
             position: relative;
-            top: 5px;
+            top: 2px;
             left: 50px;
             width: 50px;
-            height: 15px;
+            height: 21px;
         }
         #popup-spacer {
             width: 100%;
@@ -70,7 +71,7 @@
             background-color: #aaaaaa;
         }
         #popup-full {
-            position: absolute;
+            position: fixed;
             width: 100%;
             bottom: 0px;
             left: 0px;
@@ -227,7 +228,9 @@
     <div id="popup-full">
         <div id="popup-spacer"></div>
         <div id="popup">
-            <div id="timer"></div><div id="lasttime"></div><select id="bookselect"></select>
+            <div id="timer"></div>
+            <div id="lasttime"></div>
+            <select id="bookselect"></select>
         </div>
     </div>
     <style id="where-popup">
