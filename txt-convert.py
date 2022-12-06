@@ -20,8 +20,6 @@ html = '''
 <html>
 <head>
 '''
-with open('script', 'r') as f:
-	html += f.read()
 html += '''
 </head>
 <body>'''
